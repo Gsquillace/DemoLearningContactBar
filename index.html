@@ -4,9 +4,11 @@
    <script type="text/javascript">
 
     var listener = function(payload) {
+        console.log('Clicked phone number*******');
         console.log('Clicked phone number: ' + payload.returnValue.number);
     };
-        window.addEventListener('load', function() {
+    
+    window.addEventListener('load', function() {
         sforce.opencti.onClickToDial({listener: listener});
     });
 
@@ -18,10 +20,14 @@
          }
       	};
 
+   function disableClickToDial() {
+        sforce.opencti.disableClickToDial({callback: callback});
+    }
+
     function enableClickToDial() {
         sforce.opencti.enableClickToDial({callback: callback});
     }
-
+    
     function screenPop() {
                 	sforce.opencti.screenPop({type: sforce.opencti.SCREENPOP_TYPE.OBJECTHOME, params: {scope:"Account"}, callback: callback  });
         	}
@@ -42,6 +48,8 @@
     <button onclick="searchAndScreenPop();">searchAndScreenPop</button>
     <br>
     <button onclick="enableClickToDial();">enableClickToDial()</button>
+    <br>
+    <button onclick="disableClickToDial();">disableClickToDial()</button>
 
 
 </body>
