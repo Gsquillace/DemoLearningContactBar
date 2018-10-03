@@ -1,7 +1,15 @@
 <html>
 	<head>
    <script type="text/javascript" src="./opencti_min.js"></script>
-   <script type="text/javascript">							
+   <script type="text/javascript">
+
+    var listener = function(payload) {
+        console.log('Clicked phone number: ' + payload.returnValue.number);
+    };
+    window.addEventListener('load', function() {
+        sforce.opencti.onClickToDial({listener: listener});
+    });
+
  	var callback = function(response) {
          if (response.success) {
             console.log('API method call executed successfully! returnValue:', response.returnValue);
@@ -12,10 +20,21 @@
        	function screenPop() {
                 	sforce.opencti.screenPop({type: sforce.opencti.SCREENPOP_TYPE.OBJECTHOME, params: {scope:"Account"}, callback: callback  });
         	}
+            function searchAndScreenPop() {
+            //Invokes API method
+                    sforce.opencti.searchAndScreenPop({ searchParams : 'Acme',queryParams :
+                    'Key1=value1&Key2=value2', callType : sforce.opencti.CALL_TYPE.INBOUND, deferred: false,
+                    callback : callback });
+            }
 </script>
 </head>
 <body>
-Hello!!!   
+    Hello!!! 
+    <br/>  
     <button onclick="screenPop();">screenPop</button>
+    <br/>  
+    <button onclick="screenPopAndSearch();">screenPopAndSearch</button>
+
+
 </body>
 </html>
