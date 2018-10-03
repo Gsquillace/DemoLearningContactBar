@@ -18,6 +18,10 @@
          }
       	};
 
+    function enableClickToDial() {
+        sforce.opencti.enableClickToDial({callback: callback});
+    }
+
     function screenPop() {
                 	sforce.opencti.screenPop({type: sforce.opencti.SCREENPOP_TYPE.OBJECTHOME, params: {scope:"Account"}, callback: callback  });
         	}
@@ -36,6 +40,8 @@
     <button onclick="screenPop();">screenPop</button>
     <br/>  
     <button onclick="searchAndScreenPop();">searchAndScreenPop</button>
+    <br>
+    <button onclick="enableClickToDial();">enableClickToDial()</button>
 
 
 </body>
