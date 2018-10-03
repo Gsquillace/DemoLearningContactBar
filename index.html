@@ -6,7 +6,7 @@
     var listener = function(payload) {
         console.log('Clicked phone number: ' + payload.returnValue.number);
     };
-    window.addEventListener('load', function() {
+        window.addEventListener('load', function() {
         sforce.opencti.onClickToDial({listener: listener});
     });
 
@@ -17,10 +17,12 @@
             console.error('Something went wrong! Errors:', response.errors);
          }
       	};
-       	function screenPop() {
+
+    function screenPop() {
                 	sforce.opencti.screenPop({type: sforce.opencti.SCREENPOP_TYPE.OBJECTHOME, params: {scope:"Account"}, callback: callback  });
         	}
-            function searchAndScreenPop() {
+
+    function searchAndScreenPop() {
             //Invokes API method
                     sforce.opencti.searchAndScreenPop({ searchParams : 'Acme',queryParams :
                     'Key1=value1&Key2=value2', callType : sforce.opencti.CALL_TYPE.INBOUND, deferred: false,
@@ -33,7 +35,7 @@
     <br/>  
     <button onclick="screenPop();">screenPop</button>
     <br/>  
-    <button onclick="screenPopAndSearch();">screenPopAndSearch</button>
+    <button onclick="searchAndScreenPop();">searchAndScreenPop</button>
 
 
 </body>
